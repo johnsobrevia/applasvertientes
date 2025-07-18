@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Interactiva: ERP para Las Vertientes SPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Calm Harmony (Background: Stone 100 #f5f5f4, Text: Stone 800 #292524, Primary: Teal 500 #14b8a6, Accent: Orange 500 #f97316) -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling application that transforms the slide deck into an interactive narrative. A sticky top navigation allows for non-linear exploration. The core of the experience is an interactive tabbed section for the different ERP modules and a simulated, dynamic Looker Studio dashboard built with Chart.js. This structure is more engaging than a static presentation, allowing users to actively explore the proposed solution and its benefits, leading to better understanding and buy-in. -->
+    <!-- Visualization & Content Choices: [Desafío -> Cards (HTML/CSS) for clarity], [Módulos -> Interactive Tabs (JS) for engagement/organization], [Reportabilidad -> Simulated Interactive Dashboard (Chart.js) to visualize data and show dynamic filtering], [Próximos Pasos -> Vertical Timeline (HTML/CSS) to clearly show the process]. These choices replace static text with a visually structured elements to improve comprehension and impact, without using SVG or Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4;
+            color: #292524;
+        }
+        .nav-link-active {
+            color: #14b8a6;
+            font-weight: 600;
+        }
+        .tab-active {
+            background-color: #14b8a6;
+            color: white;
+        }
+        .tab-inactive {
+            background-color: #e7e5e4;
+            color: #57534e;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-stone-100/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-lg font-bold text-stone-800">Las Vertientes SPA</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#intro" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Introducción</a>
+                        <a href="#solucion" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Solución</a>
+                        <a href="#modulos" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Módulos</a>
+                        <a href="#reportabilidad" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Reportabilidad</a>
+                        <a href="#beneficios" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Beneficios</a>
+                        <a href="#pasos" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Próximos Pasos</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="portada" class="min-h-[60vh] flex items-center bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-stone-900">Optimizando la Gestión: <span class="text-teal-500">ERP con Google App</span></h1>
+                <p class="mt-4 text-lg md:text-xl text-stone-600 max-w-3xl mx-auto">Una Solución Integral para la Eficiencia Operacional de Las Vertientes SPA.</p>
+            </div>
+        </section>
+
+        <section id="intro" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">¿Por qué estamos aquí?</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Las Vertientes SPA busca optimizar sus procesos y mejorar la toma de decisiones. Nuestra propuesta es una solución ERP ágil y personalizable para transformar su operación, impulsando la productividad y el control.</p>
+                </div>
+
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-center text-stone-800">Identificando el Desafío Actual</h3>
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-semibold text-lg text-orange-500">Fragmentación</h4>
+                            <p class="mt-2 text-stone-600">Datos en diferentes hojas de cálculo, documentos o sistemas aislados que dificultan la cohesión.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-semibold text-lg text-orange-500">Procesos Manuales</h4>
+                            <p class="mt-2 text-stone-600">Tareas repetitivas que consumen tiempo valioso y son propensas a errores humanos.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-semibold text-lg text-orange-500">Falta de Visibilidad</h4>
+                            <p class="mt-2 text-stone-600">Dificultad para obtener una visión clara y en tiempo real del estado de los proyectos y recursos.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-semibold text-lg text-orange-500">Decisiones Reactivas</h4>
+                            <p class="mt-2 text-stone-600">Decisiones basadas en información incompleta o desactualizada, limitando la proactividad.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h4 class="font-semibold text-lg text-orange-500">Escalabilidad Limitada</h4>
+                            <p class="mt-2 text-stone-600">Sistemas actuales que no se adaptan fácilmente al crecimiento y a las nuevas demandas del negocio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solucion" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:text-center">
+                    <h2 class="text-base font-semibold tracking-wide text-teal-600 uppercase">La Solución</h2>
+                    <p class="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">Un ERP a Medida con Google App</p>
+                    <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">Proponemos un sistema centralizado que integra los módulos clave de su operación, construido sobre una plataforma ágil que no requiere código.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-teal-500 text-white">
+                                <span>⚡</span>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg leading-6 font-medium text-gray-900">Agilidad</h4>
+                            <p class="mt-2 text-base text-gray-500">Desarrollo rápido y flexible de aplicaciones que se adaptan a sus necesidades cambiantes.</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-teal-500 text-white">
+                                <span>🔧</span>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg leading-6 font-medium text-gray-900">Personalización</h4>
+                            <p class="mt-2 text-base text-gray-500">Soluciones adaptadas específicamente a los procesos y flujos de trabajo de Las Vertientes SPA.</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-teal-500 text-white">
+                                <span>📱</span>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg leading-6 font-medium text-gray-900">Acceso Móvil</h4>
+                            <p class="mt-2 text-base text-gray-500">Gestione su operación desde cualquier lugar con aplicaciones disponibles en smartphones y tablets.</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-teal-500 text-white">
+                                <span>💰</span>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg leading-6 font-medium text-gray-900">Costo-Efectividad</h4>
+                            <p class="mt-2 text-base text-gray-500">Menor inversión inicial y de mantenimiento en comparación con los ERPs tradicionales del mercado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modulos" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Módulos de Gestión Integrada</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Explore los componentes clave de la solución. Cada módulo está diseñado para resolver un área crítica de su negocio, funcionando de manera integrada.</p>
+                </div>
+                <div class="mt-12 max-w-4xl mx-auto">
+                    <div class="sm:hidden">
+                        <select id="tabs-select" class="block w-full rounded-md border-gray-300 focus:border-teal-500 focus:ring-teal-500">
+                        </select>
+                    </div>
+                    <div class="hidden sm:block">
+                        <div class="border-b border-gray-200">
+                            <nav id="tabs-nav" class="-mb-px flex space-x-4" aria-label="Tabs">
+                            </nav>
+                        </div>
+                    </div>
+                    <div id="tabs-content" class="mt-8">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reportabilidad" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Inteligencia de Negocios con Looker Studio</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Conectamos los datos de su operación a paneles interactivos para una toma de decisiones informada y proactiva. Vea cómo sus datos cobran vida.</p>
+                </div>
+                <div class="mt-12 max-w-6xl mx-auto bg-stone-50 p-6 rounded-xl shadow-lg border border-stone-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-stone-800">Panel de Control de Proyectos (Simulación)</h3>
+                        <div class="flex items-center space-x-2">
+                            <label for="project-filter" class="text-sm font-medium text-stone-600">Filtrar por Proyecto:</label>
+                            <select id="project-filter" class="rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-sm">
+                                <option value="proyectoA">Proyecto Alpha</option>
+                                <option value="proyectoB">Proyecto Beta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-center font-medium text-stone-700 mb-2">Análisis de Gastos vs. Presupuesto</h4>
+                            <div class="chart-container relative h-80 w-full">
+                                <canvas id="budgetChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-1 bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-center font-medium text-stone-700 mb-2">Estado de Proyectos por Fase</h4>
+                            <div class="chart-container relative h-80 w-full">
+                                <canvas id="statusChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beneficios" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">El Impacto en Su Negocio</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">La implementación de esta solución se traduce en beneficios tangibles y estratégicos para Las Vertientes SPA.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <h4 class="font-semibold text-lg text-teal-600">Mayor Eficiencia Operacional</h4>
+                        <p class="mt-2 text-stone-600">Automatización de tareas y optimización de flujos de trabajo.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <h4 class="font-semibold text-lg text-teal-600">Reducción de Errores</h4>
+                        <p class="mt-2 text-stone-600">Centralización de datos y procesos estandarizados para minimizar fallos.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <h4 class="font-semibold text-lg text-teal-600">Visibilidad 360°</h4>
+                        <p class="mt-2 text-stone-600">Acceso a información clave en tiempo real desde cualquier lugar.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <h4 class="font-semibold text-lg text-teal-600">Mejor Toma de Decisiones</h4>
+                        <p class="mt-2 text-stone-600">Decisiones basadas en datos precisos y análisis profundos.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <h4 class="font-semibold text-lg text-teal-600">Agilidad y Adaptabilidad</h4>
+                        <p class="mt-2 text-stone-600">Un sistema que crece y se adapta con su negocio a lo largo del tiempo.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <h4 class="font-semibold text-lg text-teal-600">Colaboración Mejorada</h4>
+                        <p class="mt-2 text-stone-600">Unificación de equipos y comunicación fluida en una misma plataforma.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pasos" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">¿Cómo Empezamos?</h2>
+                    <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">Proponemos un plan de trabajo colaborativo y por etapas para garantizar el éxito del proyecto.</p>
+                </div>
+                <div class="mt-12 max-w-3xl mx-auto">
+                    <div class="relative">
+                        <div class="absolute left-1/2 w-0.5 h-full bg-stone-300 -translate-x-1/2"></div>
+                        <div class="space-y-12">
+                            <div class="relative flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="p-4 bg-teal-500 text-white rounded-lg inline-block">
+                                        <h4 class="font-bold">1. Reunión de Levantamiento</h4>
+                                        <p>Detallar procesos y requerimientos de cada módulo.</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 w-4 h-4 bg-white border-2 border-teal-500 rounded-full -translate-x-1/2"></div>
+                                <div class="w-1/2"></div>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="w-1/2"></div>
+                                <div class="absolute left-1/2 w-4 h-4 bg-white border-2 border-teal-500 rounded-full -translate-x-1/2"></div>
+                                <div class="w-1/2 pl-8 text-left">
+                                    <div class="p-4 bg-orange-500 text-white rounded-lg inline-block">
+                                        <h4 class="font-bold">2. Diseño y Prototipado</h4>
+                                        <p>Creación de las primeras versiones de las aplicaciones.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <div class="p-4 bg-teal-500 text-white rounded-lg inline-block">
+                                        <h4 class="font-bold">3. Pruebas y Ajustes</h4>
+                                        <p>Iteración con su equipo para refinar la solución.</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 w-4 h-4 bg-white border-2 border-teal-500 rounded-full -translate-x-1/2"></div>
+                                <div class="w-1/2"></div>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="w-1/2"></div>
+                                <div class="absolute left-1/2 w-4 h-4 bg-white border-2 border-teal-500 rounded-full -translate-x-1/2"></div>
+                                <div class="w-1/2 pl-8 text-left">
+                                     <div class="p-4 bg-orange-500 text-white rounded-lg inline-block">
+                                        <h4 class="font-bold">4. Implementación y Capacitación</h4>
+                                        <p>Puesta en marcha del sistema y formación de usuarios.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="w-1/2 pr-8 text-right">
+                                     <div class="p-4 bg-teal-500 text-white rounded-lg inline-block">
+                                        <h4 class="font-bold">5. Soporte Continuo</h4>
+                                        <p>Acompañamiento y mantenimiento de la solución.</p>
+                                    </div>
+                                </div>
+                                <div class="absolute left-1/2 w-4 h-4 bg-white border-2 border-teal-500 rounded-full -translate-x-1/2"></div>
+                                <div class="w-1/2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-stone-800 text-white">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+             <h3 class="text-2xl font-bold">¿Tienes Preguntas?</h3>
+             <p class="mt-2 text-stone-300">Estamos listos para conversar y aclarar cualquier duda.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function changeNav() {
+                let index = sections.length;
+                while(--index && window.scrollY + 50 < sections[index].offsetTop) {}
+                
+                navLinks.forEach((link) => link.classList.remove('nav-link-active'));
+                const activeLink = document.querySelector(`.nav-link[href="#${sections[index].id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('nav-link-active');
+                }
+            }
+            changeNav();
+            window.addEventListener('scroll', changeNav);
+
+            const modulesData = [
+                {
+                    id: 'proyectos',
+                    title: 'Gestión de Proyectos',
+                    points: [
+                        "<b>Registro de Proyectos:</b> Creación y seguimiento de cada proyecto con sus datos clave.",
+                        "<b>Asignación de Tareas:</b> Definición de hitos, tareas y responsables.",
+                        "<b>Seguimiento de Avance:</b> Actualización en tiempo real del progreso.",
+                        "<b>Documentación Asociada:</b> Vinculación de planos, permisos, y fotos.",
+                        "<b>Alertas y Notificaciones:</b> Recordatorios automáticos de plazos."
+                    ]
+                },
+                {
+                    id: 'presupuestos',
+                    title: 'Gestión de Presupuestos',
+                    points: [
+                        "<b>Creación de Presupuestos:</b> Detalle de ingresos y gastos esperados.",
+                        "<b>Registro de Gastos:</b> Captura y categorización de cada desembolso.",
+                        "<b>Comparación Real vs. Presupuestado:</b> Visualización instantánea de desviaciones.",
+                        "<b>Aprobaciones Digitales:</b> Flujos de trabajo para la autorización de gastos.",
+                        "<b>Historial Financiero:</b> Acceso rápido a datos históricos."
+                    ]
+                },
+                {
+                    id: 'compras',
+                    title: 'Gestión de Compras e Inventario',
+                    points: [
+                        "<b>Solicitudes de Compra:</b> Generación y seguimiento de pedidos.",
+                        "<b>Registro de Proveedores:</b> Base de datos con información de contactos.",
+                        "<b>Control de Inventario:</b> Monitoreo en tiempo real de stock.",
+                        "<b>Alertas de Stock Mínimo:</b> Notificaciones para reponer inventario.",
+                        "<b>Historial de Compras:</b> Trazabilidad de todas las adquisiciones."
+                    ]
+                },
+                {
+                    id: 'laboral',
+                    title: 'Gestión de Fuerza Laboral',
+                    points: [
+                        "<b>Registro de Personal:</b> Datos de empleados, roles y contactos.",
+                        "<b>Asignación de Tareas:</b> Vinculación de personal a actividades específicas.",
+                        "<b>Control de Horas y Asistencia:</b> Registro de jornadas laborales.",
+                        "<b>Gestión de Permisos y Vacaciones:</b> Solicitudes y aprobaciones digitalizadas.",
+                        "<b>Reportes de Desempeño:</b> Información para evaluar la productividad."
+                    ]
+                },
+                {
+                    id: 'activos',
+                    title: 'Gestión de Activos y Equipos',
+                    points: [
+                        "<b>Inventario de Activos:</b> Registro de maquinaria, vehículos, etc.",
+                        "<b>Historial de Mantenimiento:</b> Seguimiento de reparaciones y servicios.",
+                        "<b>Programación de Mantenimiento:</b> Recordatorios para tareas preventivas.",
+                        "<b>Ubicación de Activos:</b> Registro de dónde se encuentra cada equipo.",
+                        "<b>Reportes de Utilización:</b> Análisis de la eficiencia y el uso de activos."
+                    ]
+                }
+            ];
+
+            const tabsNav = document.getElementById('tabs-nav');
+            const tabsSelect = document.getElementById('tabs-select');
+            const tabsContent = document.getElementById('tabs-content');
+
+            modulesData.forEach((tab, index) => {
+                const navItem = document.createElement('a');
+                navItem.href = '#';
+                navItem.dataset.tab = tab.id;
+                navItem.className = `whitespace-nowrap py-2 px-3 font-medium text-sm rounded-t-lg transition-colors ${index === 0 ? 'tab-active' : 'tab-inactive'}`;
+                navItem.textContent = tab.title;
+                tabsNav.appendChild(navItem);
+
+                const selectOption = document.createElement('option');
+                selectOption.value = tab.id;
+                selectOption.textContent = tab.title;
+                if (index === 0) selectOption.selected = true;
+                tabsSelect.appendChild(selectOption);
+
+                const contentItem = document.createElement('div');
+                contentItem.id = tab.id;
+                contentItem.className = `${index !== 0 ? 'hidden' : ''}`;
+                contentItem.innerHTML = `<ul class="space-y-4 text-stone-600 list-disc list-inside">${tab.points.map(p => `<li>${p}</li>`).join('')}</ul>`;
+                tabsContent.appendChild(contentItem);
+            });
+
+            function switchTab(tabId) {
+                tabsNav.querySelectorAll('a').forEach(a => {
+                    if (a.dataset.tab === tabId) {
+                        a.classList.add('tab-active');
+                        a.classList.remove('tab-inactive');
+                    } else {
+                        a.classList.remove('tab-active');
+                        a.classList.add('tab-inactive');
+                    }
+                });
+
+                tabsContent.querySelectorAll('div').forEach(div => {
+                    div.id === tabId ? div.classList.remove('hidden') : div.classList.add('hidden');
+                });
+                tabsSelect.value = tabId;
+            }
+
+            tabsNav.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (e.target.tagName === 'A') {
+                    switchTab(e.target.dataset.tab);
+                }
+            });
+
+            tabsSelect.addEventListener('change', (e) => {
+                switchTab(e.target.value);
+            });
+            
+            const chartData = {
+                proyectoA: {
+                    budget: [10000, 12000, 8000, 15000],
+                    expenses: [9500, 11000, 8200, 14000],
+                    status: [5, 12, 3, 2],
+                },
+                proyectoB: {
+                    budget: [20000, 18000, 25000, 22000],
+                    expenses: [19000, 18500, 23000, 22100],
+                    status: [2, 8, 10, 5],
+                }
+            };
+
+            const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+            const budgetChart = new Chart(budgetCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [{
+                        label: 'Presupuestado',
+                        data: chartData.proyectoA.budget,
+                        backgroundColor: 'rgba(249, 115, 22, 0.5)',
+                        borderColor: 'rgba(249, 115, 22, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Gastado',
+                        data: chartData.proyectoA.expenses,
+                        backgroundColor: 'rgba(20, 184, 166, 0.5)',
+                        borderColor: 'rgba(20, 184, 166, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            const statusChart = new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Planificación', 'En Progreso', 'Finalizado', 'Pausado'],
+                    datasets: [{
+                        label: 'Estado de Tareas',
+                        data: chartData.proyectoA.status,
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(249, 115, 22, 0.7)',
+                            'rgba(20, 184, 166, 0.7)',
+                            'rgba(107, 114, 128, 0.7)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+
+            document.getElementById('project-filter').addEventListener('change', function(e) {
+                const selectedProject = e.target.value;
+                
+                budgetChart.data.datasets[0].data = chartData[selectedProject].budget;
+                budgetChart.data.datasets[1].data = chartData[selectedProject].expenses;
+                budgetChart.update();
+
+                statusChart.data.datasets[0].data = chartData[selectedProject].status;
+                statusChart.update();
+            });
+        });
+    </script>
+</body>
+</html>
