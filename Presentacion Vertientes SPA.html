@@ -12,7 +12,7 @@
     
     <!-- Chosen Palette: Calm Harmony (Background: Stone 100 #f5f5f4, Text: Stone 800 #292524, Primary: Teal 500 #14b8a6, Accent: Orange 500 #f97316) -->
     <!-- Application Structure Plan: A single-page, vertical scrolling application that transforms the slide deck into an interactive narrative. A sticky top navigation allows for non-linear exploration. The core of the experience is an interactive tabbed section for the different ERP modules and a simulated, dynamic Looker Studio dashboard built with Chart.js. This structure is more engaging than a static presentation, allowing users to actively explore the proposed solution and its benefits, leading to better understanding and buy-in. -->
-    <!-- Visualization & Content Choices: [Desafío -> Cards (HTML/CSS) for clarity], [Módulos -> Interactive Tabs (JS) for engagement/organization], [Reportabilidad -> Simulated Interactive Dashboard (Chart.js) to visualize data and show dynamic filtering], [Próximos Pasos -> Vertical Timeline (HTML/CSS) to clearly show the process]. These choices replace static text with a visually structured elements to improve comprehension and impact, without using SVG or Mermaid. -->
+    <!-- Visualization & Content Choices: [Desafío -> Cards (HTML/CSS) for clarity], [Módulos -> Interactive Tabs (JS) for engagement/organization], [Reportabilidad -> Simulated Interactive Dashboard (Chart.js) to visualize data and show dynamic filtering, now with overtime costs and equipment incidents], [Próximos Pasos -> Vertical Timeline (HTML/CSS) to clearly show the process], [Cotización -> Value-focused section with prominent pricing and payment options]. These choices replace static text with a visually structured elements to improve comprehension and impact, without using SVG or Mermaid. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <style>
@@ -50,6 +50,7 @@
                         <a href="#modulos" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Módulos</a>
                         <a href="#reportabilidad" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Reportabilidad</a>
                         <a href="#beneficios" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Beneficios</a>
+                        <a href="#cotizacion" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Cotización</a>
                         <a href="#pasos" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:text-teal-500 transition-colors">Próximos Pasos</a>
                     </div>
                 </div>
@@ -60,7 +61,7 @@
     <main>
         <section id="portada" class="min-h-[60vh] flex items-center bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
-                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-stone-900">Optimizando la Gestión: <span class="text-teal-500">ERP con Google App</span></h1>
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-stone-900">Optimizando la Gestión: <span class="text-teal-500">ERP con Google Apps</span></h1>
                 <p class="mt-4 text-lg md:text-xl text-stone-600 max-w-3xl mx-auto">Una Solución Integral para la Eficiencia Operacional de Las Vertientes SPA.</p>
             </div>
         </section>
@@ -104,7 +105,7 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center">
                     <h2 class="text-base font-semibold tracking-wide text-teal-600 uppercase">La Solución</h2>
-                    <p class="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">Un ERP a Medida con Google App</p>
+                    <p class="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">Un ERP a Medida con Google Apps</p>
                     <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">Proponemos un sistema centralizado que integra los módulos clave de su operación, construido sobre una plataforma ágil que no requiere código.</p>
                 </div>
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -209,6 +210,18 @@
                                 <canvas id="statusChart"></canvas>
                             </div>
                         </div>
+                        <div class="lg:col-span-2 bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-center font-medium text-stone-700 mb-2">Costos Mensuales por Horas Extras</h4>
+                            <div class="chart-container relative h-80 w-full">
+                                <canvas id="overtimeChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-1 bg-white p-4 rounded-lg shadow">
+                            <h4 class="text-center font-medium text-stone-700 mb-2">Incidencias por Equipo</h4>
+                            <div class="chart-container relative h-80 w-full">
+                                <canvas id="incidentsChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -246,6 +259,25 @@
                         <p class="mt-2 text-stone-600">Unificación de equipos y comunicación fluida en una misma plataforma.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="cotizacion" class="py-16 md:py-24 bg-teal-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Una Inversión que Transforma su Negocio</h2>
+                <p class="mt-4 text-lg text-stone-700 max-w-3xl mx-auto">Considerando la eficiencia operativa, la reducción de errores, la visibilidad en tiempo real y la mejora en la toma de decisiones que esta solución integral aportará a Las Vertientes SPA, la inversión es excepcionalmente ventajosa.</p>
+                
+                <div class="mt-12 bg-white p-8 rounded-xl shadow-2xl inline-block">
+                    <p class="text-base font-semibold text-teal-600 uppercase">Inversión Total</p>
+                    <p class="mt-2 text-5xl md:text-6xl font-extrabold text-orange-500">CLP 1.500.000</p>
+                    <p class="mt-4 text-lg text-stone-700">Pago Único por la implementación completa de su ERP con Google Apps.</p>
+                    <div class="mt-6 border-t border-stone-200 pt-4">
+                        <p class="text-md font-semibold text-stone-800">Opciones de Pago Flexibles:</p>
+                        <p class="mt-2 text-stone-600">Puede optar por un **pago único** o dividirlo en **dos partes** para mayor comodidad.</p>
+                    </div>
+                </div>
+
+                <p class="mt-12 text-xl text-stone-700 max-w-3xl mx-auto">Esta inversión es mínima en comparación con los ahorros a largo plazo y el crecimiento que su empresa experimentará al optimizar sus procesos con una solución a medida.</p>
             </div>
         </section>
 
@@ -460,11 +492,15 @@
                     budget: [10000, 12000, 8000, 15000],
                     expenses: [9500, 11000, 8200, 14000],
                     status: [5, 12, 3, 2],
+                    overtime: [1200, 1500, 1100, 1800, 1300, 1600],
+                    incidents: [7, 3, 5, 2]
                 },
                 proyectoB: {
                     budget: [20000, 18000, 25000, 22000],
                     expenses: [19000, 18500, 23000, 22100],
                     status: [2, 8, 10, 5],
+                    overtime: [2000, 1800, 2200, 2500, 1900, 2100],
+                    incidents: [4, 6, 2, 8]
                 }
             };
 
@@ -517,6 +553,59 @@
                 }
             });
 
+            const overtimeCtx = document.getElementById('overtimeChart').getContext('2d');
+            const overtimeChart = new Chart(overtimeCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Costo Horas Extras (CLP)',
+                        data: chartData.proyectoA.overtime,
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            const incidentsCtx = document.getElementById('incidentsChart').getContext('2d');
+            const incidentsChart = new Chart(incidentsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Vehículo 1', 'Máquina A', 'Herramienta X', 'Generador'],
+                    datasets: [{
+                        label: 'Nº Incidencias',
+                        data: chartData.proyectoA.incidents,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+
             document.getElementById('project-filter').addEventListener('change', function(e) {
                 const selectedProject = e.target.value;
                 
@@ -526,6 +615,12 @@
 
                 statusChart.data.datasets[0].data = chartData[selectedProject].status;
                 statusChart.update();
+
+                overtimeChart.data.datasets[0].data = chartData[selectedProject].overtime;
+                overtimeChart.update();
+
+                incidentsChart.data.datasets[0].data = chartData[selectedProject].incidents;
+                incidentsChart.update();
             });
         });
     </script>
